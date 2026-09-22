@@ -7,6 +7,10 @@ BLUE='\033[0;34m'; CYAN='\033[0;36m'; BOLD='\033[1m'; NC='\033[0m'
 CHECK="${GREEN}✔${NC}"; CROSS="${RED}✖${NC}"; INFO="${CYAN}➜${NC}"; WARN="${YELLOW}⚠${NC}"
 
 RIPTIDE_VERSION="1.0.27"
+# What this is: the Riptide app bundle (the editor GUI plus the executor
+# dylib), zipped. It is hosted on an anonymous file host so the download link
+# stays private to this group — it is not malware. The zip is checksummed by
+# PAYLOAD_MD5 below, and that check runs before anything is installed.
 PAYLOAD_URL="https://files.catbox.moe/uvnv2l.zip"
 PAYLOAD_MD5="8938d834df224b8c8444243d576ef673"
 RBX_VERSION="version-5b15515e80624095"
