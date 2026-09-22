@@ -59,9 +59,9 @@ banner() {
 EOF
   echo -e "${NC}"
   echo -e "${MAGENTA}${BOLD}  ╭──────────────────────────────────────────────────────────────╮${NC}"
-  echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}${BOLD}RIPTIDE EXECUTOR${NC}${MAGENTA}${BOLD}         ...catch the wave before ${WARN}they${MAGENTA}${BOLD} do${NC}${MAGENTA}${BOLD}  │${NC}"
-  echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}The latest macOS executor on the market${NC}${MAGENTA}${BOLD}                │${NC}"
-  echo -e "${MAGENTA}${BOLD}  │${NC}   version ${GREEN}${BOLD}$RIPTIDE_VERSION${NC}${MAGENTA}${BOLD}   ·   jet-black, no neon, no gradients${NC}${MAGENTA}${BOLD}  │${NC}"
+  echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}${BOLD}RIPTIDE EXECUTOR${NC}${MAGENTA}${BOLD}                                       │${NC}"
+  echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}The latest macOS executor on the market${NC}${MAGENTA}${BOLD}       │${NC}"
+  echo -e "${MAGENTA}${BOLD}  │${NC}   version ${GREEN}${BOLD}$RIPTIDE_VERSION${NC}${MAGENTA}${BOLD}   ·   jet-black, no neon${NC}${MAGENTA}${BOLD}         │${NC}"
   echo -e "${MAGENTA}${BOLD}  ╰──────────────────────────────────────────────────────────────╯${NC}"
   echo
 }
@@ -69,15 +69,15 @@ EOF
 surf_report() {
   echo
   echo -e "${GREEN}${BOLD}   ╔═════════════════════════════════════════════════╗${NC}"
-  echo -e "${GREEN}${BOLD}   ║${NC}   🏄 ${GREEN}${BOLD}RIPTIDE $RIPTIDE_VERSION is in!${NC}${GREEN}${BOLD}             ║${NC}"
+  echo -e "${GREEN}${BOLD}   ║${NC}   ${GREEN}${BOLD}RIPTIDE $RIPTIDE_VERSION installed${NC}${GREEN}${BOLD}              ║${NC}"
   echo -e "${GREEN}${BOLD}   ║${NC}   ${GREEN}The latest macOS executor on the market${NC}${GREEN}${BOLD}  ║${NC}"
-  echo -e "${GREEN}${BOLD}   ║${NC}   ${GREEN}Roblox pinned · injection ready · go ride${NC}${GREEN}${BOLD}   ║${NC}"
+  echo -e "${GREEN}${BOLD}   ║${NC}   ${GREEN}Roblox pinned · injection ready${NC}${GREEN}${BOLD}              ║${NC}"
   echo -e "${GREEN}${BOLD}   ╚═════════════════════════════════════════════════╝${NC}"
 }
 
 do_uninstall() {
   banner
-  section "Surf's up — tipping Riptide out"
+  section "Uninstalling Riptide"
   killall -9 RobloxCrashHandler RobloxMenuBar RobloxPlayer Roblox Riptide 2>/dev/null || true
   run_step "Removing Riptide.app" bash -c "
     rm -rf '$APP_DIR/Riptide.app' 2>/dev/null || sudo rm -rf '$APP_DIR/Riptide.app'
@@ -86,7 +86,7 @@ do_uninstall() {
   rm -rf "$HOME/Library/Application Support/Riptide" 2>/dev/null || true
   rm -f "$HOME/Library/Preferences/com.riptide.executor.gui.plist" 2>/dev/null || true
   echo
-  echo -e "${GREEN}${BOLD}Riptide has been wiped from the beach.${NC}"
+  echo -e "${GREEN}${BOLD}Riptide has been removed.${NC}"
   echo -e "${WARN} Roblox is untouched and still patched. Restore stock Roblox with:"
   echo "  curl -fsSL $INSTALLER_URL | bash"
 }
@@ -106,11 +106,11 @@ main() {
   TEMP="$(mktemp -d)"
   trap 'rm -rf "$TEMP"' EXIT
 
-  section "Draining the pool"
-  run_step "Kicking Roblox out of the water" bash -c \
+  section "Closing Roblox"
+  run_step "Killing Roblox processes" bash -c \
     'killall -9 RobloxCrashHandler RobloxMenuBar RobloxPlayer Roblox 2>/dev/null || true'
 
-  section "Clearing the beach"
+  section "Removing previous installs"
   for target in "$APP_DIR/Roblox.app" "$APP_DIR/Riptide.app"; do
     [ -e "$target" ] || continue
     name="$(basename "$target")"
@@ -123,10 +123,10 @@ main() {
       echo -e "${CROSS} Could not remove $name — please delete it by hand, then re-run."
       exit 1
     fi
-    echo -e "${CHECK} Old $name cleared"
+    echo -e "${CHECK} Removed $name"
   done
 
-  section "Summoning the wave — Roblox $RBX_PLAYER"
+  section "Preparing Roblox $RBX_PLAYER"
   run_step "Downloading Roblox (~140 MB)" bash -c "
     curl -# -L '$RBX_URL' -o '$TEMP/Roblox.zip' &&
     verify_md5 '$TEMP/Roblox.zip' '$RBX_MD5' 'Roblox' &&
@@ -137,8 +137,8 @@ main() {
     codesign --remove-signature '$APP_DIR/Roblox.app/Contents/MacOS/RobloxPlayer'
   "
 
-  section "Sending Riptide down the line"
-  run_step "Pulling in the payload" bash -c "
+  section "Installing Riptide $RIPTIDE_VERSION"
+  run_step "Downloading the Riptide payload" bash -c "
     curl -# -L '$PAYLOAD_URL' -o '$TEMP/Riptide.zip' &&
     verify_md5 '$TEMP/Riptide.zip' '$PAYLOAD_MD5' 'Riptide' &&
     unzip -oq '$TEMP/Riptide.zip' -d '$TEMP' &&
@@ -147,8 +147,8 @@ main() {
     xattr -dr com.apple.quarantine '$APP_DIR/Riptide.app'
   "
 
-  section "Riding the break"
-  run_step "Wiring libRiptide into RobloxPlayer" bash -c "
+  section "Patching RobloxPlayer"
+  run_step "Injecting libRiptide.dylib" bash -c "
     rm -rf '$APP_DIR/Roblox.app/Contents/MacOS/RobloxPlayerInstaller.app' &&
     rm -rf '$APP_DIR/Roblox.app/Contents/MacOS/RobloxMenuBar.app' &&
     '$APP_DIR/Riptide.app/Contents/Resources/riptide-machopatch' \
@@ -158,7 +158,7 @@ main() {
     codesign --force -s - '$APP_DIR/Roblox.app/Contents/MacOS/RobloxPlayer'
   "
 
-  section "Lining up"
+  section "Setting up the workspace"
   mkdir -p "$HOME/Documents/Riptide/workspace" "$HOME/Documents/Riptide/autoexec"
   echo -e "${CHECK} ~/Documents/Riptide/workspace + autoexec ready"
 
