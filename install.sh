@@ -11,8 +11,8 @@ RIPTIDE_VERSION="1.0.27"
 # dylib), zipped. It is hosted on an anonymous file host so the download link
 # stays private to this group — it is not malware. The zip is checksummed by
 # PAYLOAD_MD5 below, and that check runs before anything is installed.
-PAYLOAD_URL="https://files.catbox.moe/uvnv2l.zip"
-PAYLOAD_MD5="8938d834df224b8c8444243d576ef673"
+PAYLOAD_URL="https://files.catbox.moe/tcoexg.zip"
+PAYLOAD_MD5="800e13b671e64d05bd9b60a1159c7e69"
 RBX_VERSION="version-5b15515e80624095"
 RBX_PLAYER="0.738.0.7381393"
 RBX_URL="https://setup.rbxcdn.com/mac/${RBX_VERSION}-RobloxPlayer.zip"
@@ -61,7 +61,7 @@ EOF
   echo -e "${MAGENTA}${BOLD}  ╭──────────────────────────────────────────────────────────────╮${NC}"
   echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}${BOLD}RIPTIDE EXECUTOR${NC}${MAGENTA}${BOLD}                                       │${NC}"
   echo -e "${MAGENTA}${BOLD}  │${NC}   ${CYAN}The latest macOS executor on the market${NC}${MAGENTA}${BOLD}       │${NC}"
-  echo -e "${MAGENTA}${BOLD}  │${NC}   version ${GREEN}${BOLD}$RIPTIDE_VERSION${NC}${MAGENTA}${BOLD}   ·   jet-black, no neon${NC}${MAGENTA}${BOLD}         │${NC}"
+  echo -e "${MAGENTA}${BOLD}  │${NC}   version ${GREEN}${BOLD}$RIPTIDE_VERSION${NC}${MAGENTA}${BOLD}   ·   liquid glass, no neon${NC}${MAGENTA}${BOLD}     │${NC}"
   echo -e "${MAGENTA}${BOLD}  ╰──────────────────────────────────────────────────────────────╯${NC}"
   echo
 }
