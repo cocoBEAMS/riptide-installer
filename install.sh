@@ -6,13 +6,13 @@ RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; CYAN='\033[0;36m'; MAGENTA='\033[0;35m'; BOLD='\033[1m'; NC='\033[0m'
 CHECK="${GREEN}✔${NC}"; CROSS="${RED}✖${NC}"; INFO="${CYAN}➜${NC}"; WARN="${YELLOW}⚠${NC}"
 
-RIPTIDE_VERSION="1.0.27"
+RIPTIDE_VERSION="1.0.28"
 # What this is: the Riptide app bundle (the editor GUI plus the executor
 # dylib), zipped. It is hosted on an anonymous file host so the download link
 # stays private to this group — it is not malware. The zip is checksummed by
 # PAYLOAD_MD5 below, and that check runs before anything is installed.
-PAYLOAD_URL="https://files.catbox.moe/tcoexg.zip"
-PAYLOAD_MD5="800e13b671e64d05bd9b60a1159c7e69"
+PAYLOAD_URL="https://files.catbox.moe/wyhmtw.zip"
+PAYLOAD_MD5="f937ec7d35040033fdbfa4207a16fcfb"
 RBX_VERSION="version-5b15515e80624095"
 RBX_PLAYER="0.738.0.7381393"
 RBX_URL="https://setup.rbxcdn.com/mac/${RBX_VERSION}-RobloxPlayer.zip"
