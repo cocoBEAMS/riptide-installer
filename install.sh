@@ -11,7 +11,7 @@ RIPTIDE_VERSION="1.0.30"
 # dylib), zipped. It is hosted on an anonymous file host so the download link
 # stays private to this group — it is not malware. The zip is checksummed by
 # PAYLOAD_MD5 below, and that check runs before anything is installed.
-PAYLOAD_URL="https://files.catbox.moe/21lxcz.zip"
+PAYLOAD_URL="https://files.catbox.moe/258019.zip"
 PAYLOAD_MD5="248abc1c97049fc7c1b9a8a869eed0e2"
 RBX_VERSION="version-5b15515e80624095"
 RBX_PLAYER="0.738.0.7381393"
